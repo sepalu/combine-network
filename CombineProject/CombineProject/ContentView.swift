@@ -10,7 +10,7 @@
  Use the Genius API to:
  - search for a song (through title or artist)
  - select a song
- - retrieve info and curiosity about it
+ - retrieve info and curiosities about it
  
  **/
 
@@ -22,10 +22,14 @@ struct ContentView: View {
     var body: some View {
         VStack {
             TextField("Search", text: $vm.searchQuery)
+                .textFieldStyle(.roundedBorder)
             
-            ForEach(Array(vm.songs.enumerated()), id: \.offset) { index, song in
-                Text(song.result.fullTitle)
+            List(vm.songs, id: \.result.id) { song in
+                SongRowView(song: song.result)
             }
+            .listStyle(.inset)
+            
+            Spacer()
         }
         .padding()
     }

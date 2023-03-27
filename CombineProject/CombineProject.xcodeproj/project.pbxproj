@@ -13,6 +13,7 @@
 		0410FF5629CF12E500734B71 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0410FF5529CF12E500734B71 /* Preview Assets.xcassets */; };
 		0410FF5D29CF175400734B71 /* SongsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0410FF5C29CF175400734B71 /* SongsViewModel.swift */; };
 		0410FF6029CF176700734B71 /* SearchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0410FF5F29CF176700734B71 /* SearchResponse.swift */; };
+		0443169029D1EF1900E6C27D /* SongRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0443168F29D1EF1900E6C27D /* SongRowView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +24,7 @@
 		0410FF5529CF12E500734B71 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		0410FF5C29CF175400734B71 /* SongsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongsViewModel.swift; sourceTree = "<group>"; };
 		0410FF5F29CF176700734B71 /* SearchResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResponse.swift; sourceTree = "<group>"; };
+		0443168F29D1EF1900E6C27D /* SongRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongRowView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +60,7 @@
 				0410FF4E29CF12E400734B71 /* CombineProjectApp.swift */,
 				0410FF5029CF12E400734B71 /* ContentView.swift */,
 				0410FF5C29CF175400734B71 /* SongsViewModel.swift */,
+				0443168F29D1EF1900E6C27D /* SongRowView.swift */,
 				0410FF5E29CF175A00734B71 /* Model */,
 				0410FF5229CF12E500734B71 /* Assets.xcassets */,
 				0410FF5429CF12E500734B71 /* Preview Content */,
@@ -155,6 +158,7 @@
 				0410FF5D29CF175400734B71 /* SongsViewModel.swift in Sources */,
 				0410FF5129CF12E400734B71 /* ContentView.swift in Sources */,
 				0410FF4F29CF12E400734B71 /* CombineProjectApp.swift in Sources */,
+				0443169029D1EF1900E6C27D /* SongRowView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

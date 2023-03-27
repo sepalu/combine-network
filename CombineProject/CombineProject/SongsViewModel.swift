@@ -19,8 +19,8 @@ import Combine
 
 final class SongsViewModel: ObservableObject {
     private let token = "S-yVusLeYb37vqb-Kac3V9hcpxfYrfc3h9tRnQKIsYXFLZIpYqlZ_VG7_uHW30jO"
-//    var urlComponent = URLComponents(string: "api.genius.com/")
     var urlComponents = URLComponents()
+    
     @Published var searchQuery = ""
     @Published var searchResponse: SearchResponse?
     @Published var songs: [Hit] = []
@@ -49,13 +49,14 @@ final class SongsViewModel: ObservableObject {
         }
         guard let url = urlComponents.url else { return }
 
+        // create the request
         var request = URLRequest(url: url)
         request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
         
         URLSession.shared
             .dataTaskPublisher(for: request)
-            .receive(on: DispatchQueue.main)
-            .map { $0.data }
+            .receive(on: DispatchQueue.main) // receive the changes from the background threads to the main one
+            .map { $0.data } //
             .decode(type: SearchResponse.self, decoder: decoder)
             .sink { completion in
                 switch completion {
