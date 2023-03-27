@@ -27,16 +27,17 @@ final class SongsViewModel: ObservableObject {
     
     var decoder = JSONDecoder()
     
-    private var bag = Set<AnyCancellable>() // MARK: ??
-    
-    private var cancellable : AnyCancellable?
+    private var bag = Set<AnyCancellable>() // keeps track of all the subscriptions created by Combine
+    private var cancellable : AnyCancellable? // we use it to cancel a subscription to a publisher
     
     init() {
         cancellable = $searchQuery
-            .debounce(for: .milliseconds(200), scheduler: RunLoop.main) //only run once the text has been static for 1 second
+            .debounce(for: .milliseconds(200), scheduler: RunLoop.main) // runs each 200ms
             .sink { (newSearch) in
+                // a new search is performed using new query items
                 self.getSongs(queryItems: [URLQueryItem(name: "q", value: newSearch)])
             }
+        /// `sink` operator performs an action whenever the publisher emits a new value
     }
     
     func getSongs(queryItems: [URLQueryItem]? = nil) {
@@ -54,18 +55,20 @@ final class SongsViewModel: ObservableObject {
         request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
         
         URLSession.shared
-            .dataTaskPublisher(for: request)
+            .dataTaskPublisher(for: request) // create a data task publisher for URLRequest
             .receive(on: DispatchQueue.main) // receive the changes from the background threads to the main one
-            .map { $0.data } //
+            .map { $0.data } // extract the data (type Data)
             .decode(type: SearchResponse.self, decoder: decoder)
-            .sink { completion in
+            .sink { completion in // handle completion of the task
+                // it uses the enum Subscribers.Completion that only has two values (.finished and .failure)
                 switch completion {
                 case .finished:
                     print("Request finished successfully")
                 case .failure(let error):
                     print("Request failed with error: \(error)")
                 }
-            } receiveValue: { [weak self] searchResponse in
+            } receiveValue: { [weak self] searchResponse in // handle the value received from the publisher
+                // this code is executed each time the decoder succeeds
                 self?.searchResponse = searchResponse
                 self?.songs.removeAll()
                 for hit in searchResponse.response.hits {

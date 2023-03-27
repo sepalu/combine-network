@@ -58,9 +58,8 @@
 			isa = PBXGroup;
 			children = (
 				0410FF4E29CF12E400734B71 /* CombineProjectApp.swift */,
-				0410FF5029CF12E400734B71 /* ContentView.swift */,
-				0410FF5C29CF175400734B71 /* SongsViewModel.swift */,
-				0443168F29D1EF1900E6C27D /* SongRowView.swift */,
+				0443169129D1F28200E6C27D /* View */,
+				0443169229D1F28800E6C27D /* ViewModel */,
 				0410FF5E29CF175A00734B71 /* Model */,
 				0410FF5229CF12E500734B71 /* Assets.xcassets */,
 				0410FF5429CF12E500734B71 /* Preview Content */,
@@ -82,6 +81,23 @@
 				0410FF5F29CF176700734B71 /* SearchResponse.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		0443169129D1F28200E6C27D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0410FF5029CF12E400734B71 /* ContentView.swift */,
+				0443168F29D1EF1900E6C27D /* SongRowView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		0443169229D1F28800E6C27D /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				0410FF5C29CF175400734B71 /* SongsViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
