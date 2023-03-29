@@ -20,18 +20,27 @@ struct ContentView: View {
     @StateObject var vm = SongsViewModel()
     
     var body: some View {
-        VStack {
-            TextField("Search", text: $vm.searchQuery)
-                .textFieldStyle(.roundedBorder)
-            
-            List(vm.songs, id: \.result.id) { song in
-                SongRowView(song: song.result)
+        NavigationStack {
+            VStack {
+                TextField("Search", text: $vm.searchQuery)
+                    .textFieldStyle(.roundedBorder)
+                
+                List(vm.songs, id: \.result.id) { song in
+                    NavigationLink {
+                        if let songToDisplay = vm.songDetails.first(where: { $0.id == song.result.id}) {
+                            SongDetailsView(song: songToDisplay)
+                        }
+                    } label: {
+                        SongRowView(song: song.result)
+                    }
+
+                }
+                .listStyle(.inset)
+                
+                Spacer()
             }
-            .listStyle(.inset)
-            
-            Spacer()
+            .padding()
         }
-        .padding()
     }
 }
 

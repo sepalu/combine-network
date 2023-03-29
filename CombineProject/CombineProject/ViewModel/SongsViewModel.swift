@@ -23,6 +23,7 @@ final class SongsViewModel: ObservableObject {
     
     @Published var searchQuery = ""
     @Published var songs: [Hit] = []
+    @Published var songDetails: [ResponseSong] = []
     
     var decoder = JSONDecoder()
     
@@ -48,7 +49,7 @@ final class SongsViewModel: ObservableObject {
             urlComponents.queryItems = queryItems
         }
         guard let url = urlComponents.url else { return }
-
+        
         // create the request
         var request = URLRequest(url: url)
         request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
@@ -58,6 +59,39 @@ final class SongsViewModel: ObservableObject {
             .receive(on: DispatchQueue.main) // receive the changes from the background threads to the main one
             .map { $0.data } // extract the data (type Data)
             .decode(type: SearchResponse.self, decoder: decoder)
+            .flatMap { [weak self] searchResponse -> AnyPublisher<Void, Error> in
+                self?.songs.removeAll()
+                self?.songDetails.removeAll()
+                for hit in searchResponse.response.hits {
+                    self?.songs.append(hit)
+                }
+                let songIds = searchResponse.response.hits.map { $0.result.id }
+                return Publishers.Sequence(sequence: songIds)
+                    .flatMap { songId -> AnyPublisher<Void, Error> in
+                        // create a new publisher for each song ID
+                        guard let self = self else { return Empty().eraseToAnyPublisher() }
+                        let url = URL(string: "https://api.genius.com/songs/\(songId)")!
+                        var request = URLRequest(url: url)
+                        request.addValue("Bearer \(self.token)", forHTTPHeaderField: "Authorization")
+                        return URLSession.shared
+                            .dataTaskPublisher(for: request)
+                            .receive(on: DispatchQueue.main) // receive the changes from the background threads to the main one
+                            .map { $0.data }
+                            .tryMap { data -> Void in
+                                // handle the data and do something with it
+                                do {
+                                    let result = try self.decoder.decode(SongResponse.self, from: data)
+                                    self.songDetails.append(result.response.song)
+                                    print(result.response.song)
+                                } catch {
+                                    print(error.localizedDescription)
+                                }
+                                return ()
+                            }
+                            .eraseToAnyPublisher()
+                    }
+                    .eraseToAnyPublisher()
+            }
             .sink { completion in // handle completion of the task
                 // it uses the enum Subscribers.Completion that only has two values (.finished and .failure)
                 switch completion {
@@ -66,16 +100,10 @@ final class SongsViewModel: ObservableObject {
                 case .failure(let error):
                     print("Request failed with error: \(error)")
                 }
-            } receiveValue: { [weak self] searchResponse in // handle the value received from the publisher
-                // this code is executed each time the decoder succeeds
-                self?.songs.removeAll()
-                for hit in searchResponse.response.hits {
-                    self?.songs.append(hit)
-                }
-            }
+            } receiveValue: { _ in }
             .store(in: &bag)
     }
-
+    
     // async function to get songs without using Combine
     func getSongsOld(queryItems: [URLQueryItem]? = nil) async {
         // build the url
@@ -90,7 +118,7 @@ final class SongsViewModel: ObservableObject {
         // create the request
         var request = URLRequest(url: url.absoluteURL)
         request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
-                
+        
         do {
             let (data, _) = try await URLSession.shared.data(for: request)
             let response = try decoder.decode(SearchResponse.self, from: data)
