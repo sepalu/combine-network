@@ -59,28 +59,3 @@ struct PrimaryArtist: Codable {
 struct ReleaseDateComponents: Codable {
     let year, month, day: Int
 }
-
-//struct Result: Codable {
-////    let apiPath, artistNames, fullTitle: String
-////    let headerImageThumbnailURL, headerImageURL: String
-//    let id: Int
-////    let releaseDateComponents: ReleaseDateComponents
-////    let songArtImageThumbnailURL, songArtImageURL: String
-////    let title, titleWithFeatured: String
-////    let primaryArtist: PrimaryArtist
-////
-////    enum CodingKeys: String, CodingKey {
-////        case apiPath = "api_path"
-////        case artistNames = "artist_names"
-////        case fullTitle = "full_title"
-////        case headerImageThumbnailURL = "header_image_thumbnail_url"
-////        case headerImageURL = "header_image_url"
-////        case id
-////        case releaseDateComponents = "release_date_components"
-////        case songArtImageThumbnailURL = "song_art_image_thumbnail_url"
-////        case songArtImageURL = "song_art_image_url"
-////        case title
-////        case titleWithFeatured = "title_with_featured"
-////        case primaryArtist = "primary_artist"
-////    }
-//}

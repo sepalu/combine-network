@@ -22,7 +22,6 @@ final class SongsViewModel: ObservableObject {
     var urlComponents = URLComponents()
     
     @Published var searchQuery = ""
-    @Published var searchResponse: SearchResponse?
     @Published var songs: [Hit] = []
     
     var decoder = JSONDecoder()
@@ -69,7 +68,6 @@ final class SongsViewModel: ObservableObject {
                 }
             } receiveValue: { [weak self] searchResponse in // handle the value received from the publisher
                 // this code is executed each time the decoder succeeds
-                self?.searchResponse = searchResponse
                 self?.songs.removeAll()
                 for hit in searchResponse.response.hits {
                     self?.songs.append(hit)
