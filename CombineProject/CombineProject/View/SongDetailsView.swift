@@ -8,22 +8,38 @@
 import SwiftUI
 
 struct SongDetailsView: View {
-    let song: ResponseSong
+    @EnvironmentObject var vm: SongsViewModel
+    let song: SongAttributes
+    
+    var songUrl: String {
+        var urlString = song.artwork.url
+        let width = 400
+        let height = 400
+
+        urlString = urlString.replacingOccurrences(of: "{w}", with: "\(width)")
+        urlString = urlString.replacingOccurrences(of: "{h}", with: "\(height)")
+        
+        return urlString
+    }
     
     var body: some View {
         NavigationStack {
             VStack {
-                AsyncImage(url: URL(string: song.headerImageURL)) { image in
+                AsyncImage(url: URL(string: song.artwork.url)) { image in
                     image.resizable()
                 } placeholder: {
                     ProgressView()
                 }
-                .frame(height: 400)
+                .frame(width: 400, height: 400)
                 
-                Text(song.primaryArtist.name)
+                Text("Other albums from \(song.artistName ?? "no artist name")")
                     .fontWeight(.semibold)
+                
+                List(vm.albums, id: \.id) { album in
+                    Text(album.attributes.name)
+                }
             }
-            .navigationTitle(song.fullTitle)
+            .navigationTitle(song.name)
         }
     }
 }

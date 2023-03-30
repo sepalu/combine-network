@@ -25,13 +25,17 @@ struct ContentView: View {
                 TextField("Search", text: $vm.searchQuery)
                     .textFieldStyle(.roundedBorder)
                 
-                List(vm.songs, id: \.result.id) { song in
+                List(vm.songs, id: \.id) { song in
                     NavigationLink {
-                        if let songToDisplay = vm.songDetails.first(where: { $0.id == song.result.id}) {
-                            SongDetailsView(song: songToDisplay)
+                        if let songToDisplay = vm.songs.first(where: { $0.id == song.id}) {
+                            if let songDetails = songToDisplay.attributes {
+                                SongDetailsView(song: songDetails)
+                            }
                         }
                     } label: {
-                        SongRowView(song: song.result)
+                        if let songDetails = song.attributes {
+                            SongRowView(song: songDetails)
+                        }
                     }
 
                 }
@@ -41,6 +45,7 @@ struct ContentView: View {
             }
             .padding()
         }
+        .environmentObject(vm)
     }
 }
 
