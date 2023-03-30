@@ -47,7 +47,7 @@
 		0410FF4229CF12E400734B71 = {
 			isa = PBXGroup;
 			children = (
-				0410FF4D29CF12E400734B71 /* CombineProject */,
+				0410FF4D29CF12E400734B71 /* AppleMusicAPI */,
 				0410FF4C29CF12E400734B71 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -60,7 +60,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		0410FF4D29CF12E400734B71 /* CombineProject */ = {
+		0410FF4D29CF12E400734B71 /* AppleMusicAPI */ = {
 			isa = PBXGroup;
 			children = (
 				0410FF4E29CF12E400734B71 /* CombineProjectApp.swift */,
@@ -71,7 +71,7 @@
 				0410FF5229CF12E500734B71 /* Assets.xcassets */,
 				0410FF5429CF12E500734B71 /* Preview Content */,
 			);
-			path = CombineProject;
+			path = AppleMusicAPI;
 			sourceTree = "<group>";
 		};
 		0410FF5429CF12E500734B71 /* Preview Content */ = {
@@ -314,7 +314,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"CombineProject/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"AppleMusicAPI/Preview Content\"";
 				DEVELOPMENT_TEAM = 5849ZUY2X9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -343,7 +343,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"CombineProject/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"AppleMusicAPI/Preview Content\"";
 				DEVELOPMENT_TEAM = 5849ZUY2X9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;

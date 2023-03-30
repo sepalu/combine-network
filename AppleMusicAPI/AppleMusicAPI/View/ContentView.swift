@@ -44,6 +44,7 @@ struct ContentView: View {
                 Spacer()
             }
             .padding()
+            .navigationTitle("Apple Music API")
         }
         .environmentObject(vm)
     }
