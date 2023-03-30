@@ -20,7 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0410FF4B29CF12E400734B71 /* CombineProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CombineProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0410FF4B29CF12E400734B71 /* AppleMusicAPI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppleMusicAPI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0410FF4E29CF12E400734B71 /* CombineProjectApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombineProjectApp.swift; sourceTree = "<group>"; };
 		0410FF5029CF12E400734B71 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		0410FF5229CF12E500734B71 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -55,7 +55,7 @@
 		0410FF4C29CF12E400734B71 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				0410FF4B29CF12E400734B71 /* CombineProject.app */,
+				0410FF4B29CF12E400734B71 /* AppleMusicAPI.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -112,9 +112,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		0410FF4A29CF12E400734B71 /* CombineProject */ = {
+		0410FF4A29CF12E400734B71 /* AppleMusicAPI */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 0410FF5929CF12E500734B71 /* Build configuration list for PBXNativeTarget "CombineProject" */;
+			buildConfigurationList = 0410FF5929CF12E500734B71 /* Build configuration list for PBXNativeTarget "AppleMusicAPI" */;
 			buildPhases = (
 				0410FF4729CF12E400734B71 /* Sources */,
 				0410FF4829CF12E400734B71 /* Frameworks */,
@@ -124,9 +124,9 @@
 			);
 			dependencies = (
 			);
-			name = CombineProject;
+			name = AppleMusicAPI;
 			productName = CombineProject;
-			productReference = 0410FF4B29CF12E400734B71 /* CombineProject.app */;
+			productReference = 0410FF4B29CF12E400734B71 /* AppleMusicAPI.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -144,7 +144,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 0410FF4629CF12E400734B71 /* Build configuration list for PBXProject "CombineProject" */;
+			buildConfigurationList = 0410FF4629CF12E400734B71 /* Build configuration list for PBXProject "AppleMusicAPI" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -157,7 +157,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				0410FF4A29CF12E400734B71 /* CombineProject */,
+				0410FF4A29CF12E400734B71 /* AppleMusicAPI */,
 			);
 		};
 /* End PBXProject section */
@@ -368,7 +368,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		0410FF4629CF12E400734B71 /* Build configuration list for PBXProject "CombineProject" */ = {
+		0410FF4629CF12E400734B71 /* Build configuration list for PBXProject "AppleMusicAPI" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0410FF5729CF12E500734B71 /* Debug */,
@@ -377,7 +377,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		0410FF5929CF12E500734B71 /* Build configuration list for PBXNativeTarget "CombineProject" */ = {
+		0410FF5929CF12E500734B71 /* Build configuration list for PBXNativeTarget "AppleMusicAPI" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0410FF5A29CF12E500734B71 /* Debug */,
