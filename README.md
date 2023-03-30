@@ -7,5 +7,5 @@ This app was developed thanks to the following technologies:
 1. Apple Music API
 2. Combine framework
 
-## Combine
+### Combine
 Thanks to this framework we are able to fetch songs as the user writes the input. As soon as the songs are fetched, for each of them another API call is made. This way, if the user wants more details about the songs they are quickly available for the user.
