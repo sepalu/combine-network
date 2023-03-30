@@ -7,80 +7,80 @@
 
 import Foundation
 
-struct SearchResponse: Decodable {
+struct SearchResponse: Codable {
+    let results: SearchResponseResults
     let meta: Meta
-    let response: Response
 }
 
-struct Meta: Decodable {
-    let status: Int
+struct Meta: Codable {
+    let results: MetaResults
 }
 
-struct Response: Decodable {
-    let hits: [Hit]
+struct MetaResults: Codable {
+    let order, rawOrder: [Order]
 }
 
-struct Hit: Decodable {
-    let result: Result
+enum Order: String, Codable {
+    case albums = "albums"
+    case artists = "artists"
+    case musicVideos = "music-videos"
+    case playlists = "playlists"
+    case songs = "songs"
 }
 
-struct Result: Decodable {
-    let apiPath, artistNames, fullTitle: String
-    let id: Int
-    let releaseDateComponents: ReleaseDateComponents
-    let songArtImageThumbnailURL, songArtImageURL: String
-    let title: String
-    let primaryArtist: PrimaryArtist
-    
+struct SearchResponseResults: Codable {
+    let songs, albums, playlists, musicVideos: MusicVideosClass
+    let artists: Artists
+
     enum CodingKeys: String, CodingKey {
-        case apiPath = "api_path"
-        case artistNames = "artist_names"
-        case fullTitle = "full_title"
-        case id
-        case releaseDateComponents = "release_date_components"
-        case songArtImageThumbnailURL = "song_art_image_thumbnail_url"
-        case songArtImageURL = "song_art_image_url"
-        case title
-        case primaryArtist = "primary_artist"
+        case songs, albums, playlists
+        case musicVideos = "music-videos"
+        case artists
     }
 }
 
-struct PrimaryArtist: Codable {
-    let id: Int
+struct MusicVideosClass: Codable {
+    let data: [SearchResponseDatum]
+}
+
+struct SearchResponseDatum: Codable {
+    let id: String
+    let type: Order
+    let href: String
+    let attributes: SongAttributes?
+}
+
+struct SongAttributes: Codable {
+    let trackCount: Int?
     let name: String
+    let artistName: String?
+    let artwork: Artwork
+    let albumName: String?
+    let composerName: String?
+    let discNumber: Int?
+}
+
+struct Artwork: Codable {
+    let width, height: Int
     let url: String
-
-    enum CodingKeys: String, CodingKey {
-        case id
-        case name, url
-    }
+    let bgColor, textColor1, textColor2, textColor3: String?
+    let textColor4: String?
 }
 
-struct ReleaseDateComponents: Codable {
-    let year, month, day: Int
+struct Artists: Codable {
+    let href, next: String
+    let data: [ArtistsDatum]
 }
 
-//struct Result: Codable {
-////    let apiPath, artistNames, fullTitle: String
-////    let headerImageThumbnailURL, headerImageURL: String
-//    let id: Int
-////    let releaseDateComponents: ReleaseDateComponents
-////    let songArtImageThumbnailURL, songArtImageURL: String
-////    let title, titleWithFeatured: String
-////    let primaryArtist: PrimaryArtist
-////
-////    enum CodingKeys: String, CodingKey {
-////        case apiPath = "api_path"
-////        case artistNames = "artist_names"
-////        case fullTitle = "full_title"
-////        case headerImageThumbnailURL = "header_image_thumbnail_url"
-////        case headerImageURL = "header_image_url"
-////        case id
-////        case releaseDateComponents = "release_date_components"
-////        case songArtImageThumbnailURL = "song_art_image_thumbnail_url"
-////        case songArtImageURL = "song_art_image_url"
-////        case title
-////        case titleWithFeatured = "title_with_featured"
-////        case primaryArtist = "primary_artist"
-////    }
-//}
+struct ArtistsDatum: Codable {
+    let id: String
+    let type: Order
+    let href: String
+    let attributes: ArtistAttributes
+}
+
+struct ArtistAttributes: Codable {
+    let name: String
+    let genreNames: [String]
+    let url: String
+}
